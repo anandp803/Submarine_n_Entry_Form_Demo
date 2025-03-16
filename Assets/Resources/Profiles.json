@@ -1,0 +1,24 @@
+{
+    "profiles": [
+        {
+            "firstName": "Charlie",
+            "lastName": "Davis",
+            "location": "San Francisco"
+        },
+        {
+            "firstName": "asdad",
+            "lastName": "adsad",
+            "location": "ada"
+        },
+        {
+            "firstName": "Anand ",
+            "lastName": "Prakash",
+            "location": "MH"
+        },
+        {
+            "firstName": "preeti",
+            "lastName": "narottam",
+            "location": "MH"
+        }
+    ]
+}

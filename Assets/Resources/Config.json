@@ -1,0 +1,8 @@
+{
+    "submarine": {
+        "camera_position": { "x": 0, "y": 0, "z": 0 },
+        "camera_rotation": { "x": 0, "y": 0, "z": 0 },
+        "depth_sensor_position": { "x": 0, "y": 0, "z": 0 },
+        "depth_sensor_rotation": { "x": 0, "y": 0, "z": 0 }
+    }
+}
