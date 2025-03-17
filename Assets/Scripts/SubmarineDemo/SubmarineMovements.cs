@@ -4,93 +4,83 @@ using UnityEngine;
 
 public class SubmarineMovements : MonoBehaviour
 {
-    public float speedChangeAmount; // The amount the speed will change
-    public float maxForwardSpeed; // The maximum speed the submarine can move forwards
-    public float maxBackwardSpeed; // The maximum speed the submarine can move backwards
-    public float minSpeed; // The minimum speed the submarine can move before snapping to 0
-    public float turnSpeed; // The speed the submarine turns left and right
-    public float stabilizationSmoothing; // The smoothing applied to the correction turning
-    public float riseSpeed; // The speed the submarine rises and lowers
+    public float speedChangeAmount;
+    public float maxForwardSpeed; 
+    public float maxBackwardSpeed;
+    public float minSpeed; 
+    public float turnSpeed; 
+    public float stabilizationSmoothing; 
+    public float riseSpeed; 
 
-    private float curSpeed; // The current stores forwards and backwards speed
-    private Rigidbody rb; // Reference to the Rigidbody of the submarine
-    //private SubAnimations subAnimations; // Reference to the submarine animations script
+    private float curSpeed; 
+    private Rigidbody rb; 
 
-    // Start is called before the first frame update
+   
     void Start()
     {
-        rb = GetComponent<Rigidbody>(); // Getting the Rigidbody reference
-       // subAnimations = GetComponent<SubAnimations>(); // Getting the Sub Animations script reference
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        Move(); // Move the submarine forwards and backwards
-        Turn(); // Turn the submarine left and rise
-        Rise(); // Rise and lower the submarine
-        Stabilize(); // Correct the submarine's rotation to be upright even when it knocks into objects
+        Move(); 
+        Turn(); 
+        Rise(); 
+        Stabilize(); 
     }
 
     void Move()
     {
-        if (Input.GetKey(KeyCode.W)) // When the player presses the W key
+        if (Input.GetKey(KeyCode.W)) 
         {
-            curSpeed += speedChangeAmount; // Add to the submarine's speed
-            //subAnimations.Spin(1); // Spin the turbine forwards based on the current speed
+            curSpeed += speedChangeAmount; 
         }
-        else if (Input.GetKey(KeyCode.S)) // When the player presses the W key
+        else if (Input.GetKey(KeyCode.S)) 
         {
-            curSpeed -= speedChangeAmount; // Subtract from the submarine's speed
-            //subAnimations.Spin(-1); // Spin the turbine backwards based on the current speed
+            curSpeed -= speedChangeAmount;
+            
         }
-        else if (Mathf.Abs(curSpeed) <= minSpeed) // If the player is not pressing W or S and the current speed is less than the minumum speed
+        else if (Mathf.Abs(curSpeed) <= minSpeed)
         {
-            curSpeed = 0; // Snap the submarine to not move
-            //subAnimations.Spin(0); // Stop spinning the turbine
+            curSpeed = 0;         
         }
-        else if (curSpeed != 0) // If the player is not pressing W or S but is moving
-        {
-            //subAnimations.Spin(curSpeed / Mathf.Abs(curSpeed) / 2); // Idly spin the turbine based on the current speed
-        }
-        curSpeed = Mathf.Clamp(curSpeed, -maxBackwardSpeed, maxForwardSpeed); // Clamp the current speed based on it's max values in both directions
-        rb.AddForce(transform.forward * curSpeed); // Apply the force to the Rigidbody to move the submarine
+       
+        curSpeed = Mathf.Clamp(curSpeed, -maxBackwardSpeed, maxForwardSpeed);
+        rb.AddForce(transform.forward * curSpeed); 
     }
 
     void Turn()
     {
-        if (Input.GetKey(KeyCode.D)) // When the player presses the D key
+        if (Input.GetKey(KeyCode.D)) 
         {
-            rb.AddTorque(transform.up * turnSpeed); // Apply torque to turn the submarine right
-            //subAnimations.DrillTurn(1); // Turn the drill right
+            rb.AddTorque(transform.up * turnSpeed); 
+           
         }
-        else if (Input.GetKey(KeyCode.A)) // When the player presses the A key
+        else if (Input.GetKey(KeyCode.A)) 
         {
-            rb.AddTorque(transform.up * -turnSpeed); // Apply torque to turn the submarine left
-            //subAnimations.DrillTurn(-1); // Turn the drill left
+            rb.AddTorque(transform.up * -turnSpeed); 
         }
-        else // If the player is not turning
-        {
-           // subAnimations.DrillTurn(0); // Stop turning the drill
-        }
+       
     }
 
     void Rise()
     {
-        if (Input.GetKey(KeyCode.LeftShift)) // When the player presses the Left Shift key
+        if (Input.GetKey(KeyCode.LeftShift)) 
         {
-            rb.AddForce(transform.up * riseSpeed); // Apply force to make the submarine rise
-          //  subAnimations.FinTurn(-1); // Turn the fins down
+            if (transform.position.y <= 499)
+            {
+                rb.AddForce(transform.up * riseSpeed);
+            }
         }
-        else if (Input.GetKey(KeyCode.LeftControl)) // When the player presses the Left Control key
+        else if (Input.GetKey(KeyCode.LeftControl)) 
         {
-            rb.AddForce(transform.up * -riseSpeed); // Apply force to make the submarine lower
-            //subAnimations.FinTurn(1); // Turn the fins up
+            if (transform.position.y >= 2)
+            {
+                 rb.AddForce(transform.up * -riseSpeed); 
+            }
         }
-        else // If the player is not moving vertically
-        {
-           // subAnimations.FinTurn(0); // Stop turning the fins
-        }
+        
     }
 
     void Stabilize()

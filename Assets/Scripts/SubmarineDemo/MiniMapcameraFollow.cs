@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MiniMapcameraFollow : MonoBehaviour
 {
-    public Camera miniMapCamera;  // Camera for the mini-map
+    public Camera miniMapCamera;  
     public Transform submarineTransform;
 
     void Start()
@@ -16,7 +16,7 @@ public class MiniMapcameraFollow : MonoBehaviour
     {
         // Follow the submarine
         miniMapCamera.transform.position = new Vector3(submarineTransform.position.x, miniMapCamera.transform.position.y, submarineTransform.position.z);
-        miniMapCamera.transform.rotation = Quaternion.Euler(90f, submarineTransform.eulerAngles.y, 0f);  // Top-down view
+        miniMapCamera.transform.rotation = Quaternion.Euler(90f, submarineTransform.eulerAngles.y, 0f); 
     }
 
 }

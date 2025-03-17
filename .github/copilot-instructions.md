@@ -1,5 +1,5 @@
 <!-- UNITY CODE ASSIST INSTRUCTIONS START -->
-- Project name: SubMarine_Demo
+- Project name: Submarine_n_Entry_Form_Demo
 - Unity version: Unity 2022.3.53f1
 - Active scene:
   - Name: SubmarineDemo
@@ -8,7 +8,7 @@
   - Layers:
     - Default, TransparentFX, Ignore Raycast, Water, UI, submarine, Environment
 - Active game object:
-  - Name: Global Volume
+  - Name: submarine
   - Tag: Untagged
   - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

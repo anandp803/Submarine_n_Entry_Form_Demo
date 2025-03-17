@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform target; // Reference to the object that will be followed
-    public float movSmoothing; // The smoothing applied to the movement
-    public float rotSmoothing; // The smoothing applied to the rotation
+    public Transform target; 
+    public float movSmoothing;
+    public float rotSmoothing;
 
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = target.position; // Sets the camera pivot to the target's position
-        transform.rotation = target.rotation; // Sets the camera pivot to the target's rotation
+        transform.position = target.position; 
+        transform.rotation = target.rotation;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.position = Vector3.Lerp(transform.position, target.position, movSmoothing); // Smoothly follows the target's position
-        transform.rotation = Quaternion.Slerp(transform.rotation, target.rotation, rotSmoothing); // Smoothly follows the target's rotation
+        transform.position = Vector3.Lerp(transform.position, target.position, movSmoothing); 
+        transform.rotation = Quaternion.Slerp(transform.rotation, target.rotation, rotSmoothing); 
     }
 }
